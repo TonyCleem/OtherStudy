@@ -7,7 +7,8 @@ def digit_check(password, score):
 
     
 def letters_check(password, score):
-    return any(word.isalpha()  for word in password)
+    score+=2 * any(word.isalpha()  for word in password)
+    return score
 
     
 def length_check(password, score):
@@ -16,7 +17,8 @@ def length_check(password, score):
 
 
 def lower_letters_check(password, score):
-    return any(word.islower() for word in password)
+    score+=2 * any(word.islower() for word in password)
+    return score
 
     
 def upper_letters_check(password, score):
@@ -31,7 +33,7 @@ def symbols_check(password, score):
     
 def on_ask_change(edit, new_edit_text):
     score = 0
-    check = [upper_letters_check, length_check, digit_check, symbols_check]
+    check = [upper_letters_check, length_check, digit_check, symbols_check, letters_check, lower_letters_check]
     password = new_edit_text
     for c in check:
         score = c(password, score)
