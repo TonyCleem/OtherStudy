@@ -6,8 +6,10 @@ token = os.getenv('FORECAST_TOKEN')
 town_title = 'Курск'
 
 sms_token = os.getenv('SMS_TOKEN')
-server = SMSServer(token)
+server = SMSServer(sms_token)
 
+for i in server:
+    print(str(i))
 new_event = get_new_event(token, town_title)
 
 event_date = new_event.get_date()
@@ -15,29 +17,17 @@ event_time = new_event.get_time()
 event_area = new_event.get_area()
 phenomenon_description = new_event.get_phenomenon()
 
-sms_template = '''{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны.'''
+sms_template = '''{}: {} {} {} ожидается {}. Будьте внимательны и осторожны.'''
 
-sms_template2 ='''{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны.'''
-
-
-sms_message = sms_template2.format(
-    phenomenon_description,
+sms_message = sms_template.format(
     town_title,
     event_time,
     event_date,
     event_area,
+    phenomenon_description,
 )
 
-
-
-server.send(sms_message)
-
-
-
-
-
-
-
+# server.send(sms_message)
 
 
 # Гипотеза 1: В переменной нет прогноза погоды для Курска
@@ -105,3 +95,53 @@ server.send(sms_message)
 # Код для проверки: print("phenomenon_description", phenomenon_description)
 # Установленный факт: Значение переменной phenomenon_description утром выводит строку "заморозки до минус 34 градусов"
 # Вывод: В переменную phenomenon_description верно подставляются значения/не пуста
+
+# Гипотеза 6.1: Использование f-строк.
+# Способ проверки: Использовать f-строк для того чтобы явно указать переменную в тексте, вместо обычной строки. Это позволит проверить верно ли указана переменная при редактировании строки.
+# Код для проверки: sms_template = f'''{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны.'''
+# Установленный факт: Код запускается, но не верно отображает анимацию
+# Вывод: Код запускается через раз
+
+# Гипотеза 6.2: Использование ключевых слов
+# Способ проверки: Указать ключевые слова, при использовании метода format
+# Код для проверки: sms_message = sms_template.format(
+#     phenomenon_description=phenomenon_description,
+#     town_title=town_title,
+#     event_time=event_time,
+#     event_date=event_date,
+#     event_area=event_area,
+# )
+# Установленный факт: Код запускается, но не верно отображает анимацию загрузки
+# Вывод: Метод использования ключевых слов, помогает избежать ошибок при указании переменных строки в шаблоне.
+
+# Гипотеза 6.3: Указать переменные в круглых скобках
+# Способ проверки: Заменить фигурные скобки в шаблоне на круглые
+# Код для проверки: sms_template = '''(town_title): (event_time) (event_date) (event_area) ожидается (phenomenon_description). Будьте внимательны и осторожны.'''
+# Установленный факт: Код запускается, но отображается неверная анимация
+# Вывод: Использование круглых скобок не исправляет ошибку
+
+# Гипотеза 6.4: Указать переменные в квадратных скобках
+# Способ проверки: Заменить фигурные скобки в шаблоне на квадртаные
+# Код для проверки: sms_template = '''(town_title): (event_time) (event_date) (event_area) ожидается (phenomenon_description). Будьте внимательны и осторожны.'''
+# Установленный факт: Код запускается, но отображается неверная анимация
+# Вывод: Редактирование строки в шаблоне, не меняет результат вывода
+
+# Гипотеза 7: Указать аргументы по умолчанию
+# Способ проверки: Оставить фигурные скобки пустые
+# Код для проверки: sms_template = '''{}: {} {} {} ожидается {}. Будьте внимательны и осторожны.'''
+# Установленный факт: Код запускается, но отображается неверная анимация
+# Вывод: Редактирование строки в шаблоне, не меняет результат вывода
+
+
+# Гипотеза 8: Изменить порядок аргументов
+# Способ проверки: Указать порядок аргументов, как и в шаблоне. Переместить phenomenon_description в конец. При этом переменные оставить в пустых скобках.
+# Код для проверки: sms_message = sms_template.format(
+#     town_title,
+#     event_time,
+#     event_date,
+#     event_area,
+#     phenomenon_description,
+# )
+# Установленный факт: Код запускается, но отображается неверная анимация
+# Вывод: Редактирование строки в шаблоне, не меняет результат вывода
+
