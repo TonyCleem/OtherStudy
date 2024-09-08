@@ -44,13 +44,19 @@ def get_new_event(token, town_title):
   return Event(response.json())
 
 
-def render_progressbar(total, iteration,prefix='',suffix='',length=30,fill='█',zfill='░'):
-    iteration = min(total, iteration)
-    percent = "{0:.1f}"
-    percent = percent.format(100 * (iteration / float(total)))
-    filled_length = int(length * iteration // total)
-    pbar = fill * filled_length + zfill * (length - filled_length)
-    return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
+def render_progressbar(total,
+                       iteration,
+                       prefix='',
+                       suffix='',
+                       length=30,
+                       fill='█',
+                       zfill='░'):
+  iteration = min(total, iteration)
+  percent = "{0:.1f}"
+  percent = percent.format(100 * (iteration / float(total)))
+  filled_length = int(length * iteration // total)
+  pbar = fill * filled_length + zfill * (length - filled_length)
+  return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
 
 
 class SMSServer():
@@ -69,7 +75,7 @@ class SMSServer():
     receivers = 3249
     print(f'Рассылаю сообщение:\n {message}')
     for i in range(receivers):
-      print(render_progressbar(receivers, i), end='')
-      print('	\u001b[45D', end='')
+      progress = render_progressbar(receivers, i)
+      print(f'\r{progress}', end='')
       if not i % 100:
         time.sleep(0.1)
