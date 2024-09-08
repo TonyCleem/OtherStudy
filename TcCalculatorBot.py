@@ -17,9 +17,6 @@ def notify_progress(secs_left, id, forward_id, val_bar):
 def choose(forward_id, forward_answer):
     final_message = "Время вышло!"
     bot.send_message(forward_id, final_message)
-    print("Мне написал пользователь с ID:", forward_id)
-    print("Он спрашивал:", forward_answer)
-    print("Я ответил:", final_message)
 
 
 def wait(chat_id, question):
