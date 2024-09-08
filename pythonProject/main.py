@@ -1,5 +1,6 @@
 import os
 
+
 from weather_sdk import get_new_event, SMSServer
 
 token = os.getenv('FORECAST_TOKEN')
@@ -8,8 +9,6 @@ town_title = 'Курск'
 sms_token = os.getenv('SMS_TOKEN')
 server = SMSServer(sms_token)
 
-for i in server:
-    print(str(i))
 new_event = get_new_event(token, town_title)
 
 event_date = new_event.get_date()
@@ -27,7 +26,7 @@ sms_message = sms_template.format(
     phenomenon_description,
 )
 
-# server.send(sms_message)
+server.send(sms_message)
 
 
 # Гипотеза 1: В переменной нет прогноза погоды для Курска
