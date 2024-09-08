@@ -8,10 +8,10 @@ TG_TOKEN = os.getenv('TG_TOKEN')
 TG_CHAT_ID = os.getenv('TG_CHAT_ID')
 
 
-def notify_progress(secs_left, id, forward_id, val_bar):
+def notify_progress(secs_left, message_id, forward_id, val_bar):
     val_progressbar = render_progressbar(val_bar, val_bar-secs_left)
     new_message = "Осталось {} сек\n".format(secs_left) + val_progressbar
-    bot.update_message(forward_id, id, new_message)
+    bot.update_message(forward_id, message_id, new_message)
 
 
 def choose(forward_id, forward_answer):
@@ -21,7 +21,7 @@ def choose(forward_id, forward_answer):
 
 def wait(chat_id, question):
     message_id = bot.send_message(chat_id, "Запускаю таймер")
-    bot.create_countdown(parse(question), notify_progress, val_bar=parse(question), id=message_id, forward_id=chat_id)
+    bot.create_countdown(parse(question), notify_progress, val_bar=parse(question), message_id=message_id, forward_id=chat_id)
     bot.create_timer(parse(question), choose, forward_id=chat_id, forward_answer=question)
 
 
