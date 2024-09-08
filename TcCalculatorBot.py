@@ -9,7 +9,7 @@ TG_CHAT_ID = os.getenv('TG_CHAT_ID')
 
 
 def notify_progress(secs_left, message_id, forward_id, val_bar):
-    val_progressbar = render_progressbar(val_bar, val_bar-secs_left)
+    val_progressbar = render_progressbar(val_bar, val_bar - secs_left)
     new_message = "Осталось {} сек\n".format(secs_left) + val_progressbar
     bot.update_message(forward_id, message_id, new_message)
 
