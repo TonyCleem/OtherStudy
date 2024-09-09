@@ -8,7 +8,6 @@ load_dotenv()
 
 
 TG_TOKEN = os.getenv('TG_TOKEN')
-TG_CHAT_ID = os.getenv('TG_CHAT_ID')
 
 
 def wait(chat_id, question):
@@ -28,7 +27,8 @@ def wait(chat_id, question):
         )
 
 
-def notify_progress(secs_left, message_id, forward_id, val_bar):
+def notify_progress(secs_left, message_id,
+                    forward_id, val_bar):
     val_progressbar = render_progressbar(val_bar, val_bar - secs_left)
     new_message = "Осталось {} сек\n".format(secs_left) + val_progressbar
     bot.update_message(
@@ -43,7 +43,9 @@ def choose(forward_id, forward_answer):
     bot.send_message(forward_id, final_message)
 
 
-def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='█', zfill='░'):
+def render_progressbar(total, iteration,
+                       prefix='', suffix='',
+                       length=30, fill='█', zfill='░'):
     iteration = min(total, iteration)
     percent = "{0:.1f}"
     percent = percent.format(100 * (iteration / float(total)))
