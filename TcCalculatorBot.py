@@ -18,13 +18,13 @@ def wait(chat_id, question):
         val_bar=parse(question),
         message_id=message_id,
         forward_id=chat_id,
-        )
+    )
     bot.create_timer(
         parse(question),
         choose,
         forward_id=chat_id,
         forward_answer=question,
-        )
+    )
 
 
 def notify_progress(
@@ -36,12 +36,12 @@ def notify_progress(
         forward_id,
         message_id,
         new_message,
-        )
+    )
 
 
 def choose(forward_id, forward_answer):
-    final_message = "Время вышло!"
-    bot.send_message(forward_id, final_message)
+    timer_delay = "Время вышло!"
+    bot.send_message(forward_id, timer_delay)
 
 
 def render_progressbar(
