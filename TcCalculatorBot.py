@@ -39,8 +39,8 @@ def notify_progress(secs_left, message_id, forward_id, val_bar):
 
 
 def choose(forward_id, forward_answer):
-    final_message = "Время вышло!"
-    bot.send_message(forward_id, final_message)
+    timer_delay = "Время вышло!"
+    bot.send_message(forward_id, timer_delay)
 
 
 def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='█', zfill='░'):
