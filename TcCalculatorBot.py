@@ -4,9 +4,6 @@ from pytimeparse import parse
 import ptbot
 
 
-TG_TOKEN = os.getenv('TG_TOKEN')
-
-
 def wait(chat_id, question):
     message_id = bot.send_message(chat_id,"Запускаю таймер")
     bot.create_countdown(
@@ -53,10 +50,9 @@ def render_progressbar(
     return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
 
 
-load_dotenv()
-
-
 if __name__ == '__main__':
-    bot = ptbot.Bot(TG_TOKEN)
+    load_dotenv()
+    tg_token = os.getenv('TG_TOKEN')
+    bot = ptbot.Bot(tg_token)
     bot.reply_on_message(wait)
     bot.run_bot()
