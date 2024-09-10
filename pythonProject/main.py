@@ -19,14 +19,15 @@ phenomenon_description = new_event.get_phenomenon()
 sms_template = '''{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны.'''
 
 sms_message = sms_template.format(
-    town_title=town_title
+    town_title=town_title,
     event_time=event_time,
     event_date=event_date,
     event_area=event_area,
     phenomenon_description=phenomenon_description,
 )
 
-server.send.format(sms_message)
+
+server.send(sms_message)
 
 
 # Гипотеза 1: В переменной нет прогноза погоды для Курска
@@ -144,17 +145,4 @@ server.send.format(sms_message)
 # Установленный факт: Код запускается, но отображается неверная анимация
 # Вывод: Редактирование строки в шаблоне, не меняет результат вывода
 
-
-# Гипотеза 9: Изменить параметры вывода прогрессбара в файле "weather_sdk.py"
-# Способ проверки: Т.к не верно отображается анимация в PyCharm, отредактировать строки отвечающие за вывод прогресс бара.
-# Код для проверки: print(render_progressbar(receivers, i), '\r', end='')
-# Установленный факт: Анимация отображается некорректно, но выводиться на одной строке
-# Вывод: Неверное редактирование строк.
-
-# Гипотеза 10: Изменить параметры вывода прогрессбара в файле "weather_sdk.py"
-# Способ проверки: Определим переменную, которая будет отображать прогресс бар. Далее с помощью f-строк, будем перезаписывать вывод
-# Код для проверки: progress = render_progressbar(receivers, i)
-#                   print(f'\r{progress}', end='')
-# Установленный факт: Анимация отображается корректно.
-# Вывод: Вывод прогресс бара для PyCharm отображался некорректно. Редактирование привело к нужному результату.
 
