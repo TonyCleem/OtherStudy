@@ -75,7 +75,7 @@ class SMSServer():
     receivers = 3249
     print(f'Рассылаю сообщение:\n {message}')
     for i in range(receivers):
-      progress = render_progressbar(receivers, i)
-      print(f'\r{progress}', end='')
+      print(render_progressbar(receivers, i), end='')
+      print('	\u001b[45D', end='')
       if not i % 100:
         time.sleep(0.1)

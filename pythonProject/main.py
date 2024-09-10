@@ -16,17 +16,17 @@ event_time = new_event.get_time()
 event_area = new_event.get_area()
 phenomenon_description = new_event.get_phenomenon()
 
-sms_template = '''{}: {} {} {} ожидается {}. Будьте внимательны и осторожны.'''
+sms_template = '''{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны.'''
 
 sms_message = sms_template.format(
-    town_title,
-    event_time,
-    event_date,
-    event_area,
-    phenomenon_description,
+    town_title=town_title
+    event_time=event_time,
+    event_date=event_date,
+    event_area=event_area,
+    phenomenon_description=phenomenon_description,
 )
 
-server.send(sms_message)
+server.send.format(sms_message)
 
 
 # Гипотеза 1: В переменной нет прогноза погоды для Курска

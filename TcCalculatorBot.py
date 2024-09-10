@@ -4,9 +4,6 @@ from pytimeparse import parse
 import ptbot
 
 
-load_dotenv()
-
-
 TG_TOKEN = os.getenv('TG_TOKEN')
 
 
@@ -54,6 +51,9 @@ def render_progressbar(
     filled_length = int(length * iteration // total)
     pbar = fill * filled_length + zfill * (length - filled_length)
     return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
+
+
+load_dotenv()
 
 
 if __name__ == '__main__':
