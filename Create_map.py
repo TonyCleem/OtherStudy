@@ -4,7 +4,6 @@ import requests
 import folium
 from dotenv import load_dotenv
 from geopy import distance
-from pprint import pprint
 from flask import Flask
 
 
@@ -99,8 +98,7 @@ def find_coffees(
 
 if __name__ == '__main__':
     load_dotenv()
-    API = os.getenv('APIKEY')
-    apikey = API
+    apikey = os.getenv('APIKEY')
 
     with open("coffee.json", "r", encoding="CP1251") as json_file:
         file_read = json_file.read()
