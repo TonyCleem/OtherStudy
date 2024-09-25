@@ -18,8 +18,8 @@ def main():
                'nqmMT': '',
                'lang': 'ru',
                }
-    url_template = 'https://wttr.in/{}'
     location_search = ['Шереметьево', 'Лондон', 'Череповец']
+    url_template = 'https://wttr.in/{}'
     for location in location_search:
         url = url_template.format(location)
         print(get_weather_forecast(url, weather, payload))
