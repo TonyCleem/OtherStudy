@@ -16,7 +16,7 @@ def main():
     weather = ''
     payload = {
                'nqmMT': '',
-               'lang=ru': '',
+               'lang': 'ru',
                }
     url_template = 'https://wttr.in/{}'
     location_search = ['Шереметьево', 'Лондон', 'Череповец']
