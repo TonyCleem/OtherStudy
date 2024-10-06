@@ -36,9 +36,7 @@ def shorten_link(token, user_input):
     shorten_link.raise_for_status()
     shorten_link = shorten_link.json()
     shorten_link = shorten_link['response']['short_url']
-    parsed = urlparse(shorten_link)
-    parsed = parsed.path[1:]
-    return parsed
+    return shorten_link
 
 
 def count_clicks(token, key):
@@ -67,7 +65,6 @@ if __name__ == '__main__':
             print('Count clicks: ', count_clicks)
         else:
             shorten_link = shorten_link(token, user_input)
-            count_clicks = count_clicks(token, shorten_link)
-            print('Count clicks: ', count_clicks)
+            print(shorten_link)
     else:
         print('Invalid URL')
