@@ -47,8 +47,8 @@ if __name__ == '__main__':
     token = os.environ['VK_TOKEN']
     user_input = input('Enter your URL: ')
     if is_shorten_link(user_input):
-        key = is_shorten_link(user_input)
-        clicks_count = get_clicks_count(token, key)
+        key_for_vk = is_shorten_link(user_input)
+        clicks_count = get_clicks_count(token, key_for_vk)
         print('Clicks count: ', clicks_count)
     else:
         shortened_link = shorten_link(token, user_input)
