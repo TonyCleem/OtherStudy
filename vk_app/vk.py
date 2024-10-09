@@ -6,11 +6,7 @@ from urllib.parse import urlparse
 
 def is_shorten_link(url):
     parse = urlparse(url)
-    test = 'vk.cc'
-    if parse.netloc == test:
-        return True
-    else:
-        return False
+    return parse.netloc == 'vk.cc'
 
 
 def shorten_link(token, user_input):
