@@ -7,8 +7,8 @@ from urllib.parse import urlparse
 def is_shorten_link(url):
     parse = urlparse(url)
     test = 'vk.cc'
-    if test in parse.netloc:
-        return parse.path[1:]
+    if parse.netloc == test:
+        return True
     else:
         return False
 
@@ -27,10 +27,11 @@ def shorten_link(token, user_input):
     return shortened_link
 
 
-def get_clicks_count(token, key):
+def get_clicks_count(token, user_input):
+    parse = urlparse(user_input)
     params = {
         'access_token': token,
-        'key': key,
+        'key': parse.path[1:],
         'interval': 'forever',
         'v': '5.131',
     }
@@ -47,12 +48,8 @@ if __name__ == '__main__':
     token = os.environ['VK_TOKEN']
     user_input = input('Enter your URL: ')
     if is_shorten_link(user_input):
-        key_for_vk = is_shorten_link(user_input)
-        clicks_count = get_clicks_count(token, key_for_vk)
+        clicks_count = get_clicks_count(token, user_input)
         print('Clicks count: ', clicks_count)
     else:
         shortened_link = shorten_link(token, user_input)
         print(shortened_link)
-
-
-
