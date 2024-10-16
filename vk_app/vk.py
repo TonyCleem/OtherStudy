@@ -44,7 +44,7 @@ if __name__ == '__main__':
     load_dotenv()
     token = os.environ['VK_TOKEN']
     parser = argparse.ArgumentParser(
-        description='Укажите URL-адрес в качетве ключа'
+        description='Укажите URL-адрес в качестве ключа'
     )
     parser.add_argument('url', help='Ваш URL-адрес')
     args = parser.parse_args()
